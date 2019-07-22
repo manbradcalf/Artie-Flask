@@ -1,23 +1,34 @@
 import flask
-from flask import Blueprint, jsonify, render_template
-
+from flask import Blueprint, render_template
 import bookyrself
 
 bp = Blueprint("users", __name__, url_prefix="/users")
 
 
+@bp.route('/')
+def read_all_users():
+    users = bookyrself.firebase.database().child('users').get().each()
+    return render_template('user/index.html', template_users=users,
+                           img_storage=bookyrself.firebase.storage())
+
+
 @bp.route('/<user_id>')
 def read_user(user_id):
-    user = bookyrself.users.child(user_id).get()
-    return render_template('user/index.html', user=user, user_id=user_id)
+    user = bookyrself.firebase.database().child('users').child(user_id).get().val()
+    url = bookyrself.firebase.storage().child(f'images/users/{user_id}').get_url(None)
+    return render_template('user/user.html', user=user, user_img_url=url)
 
 
 @bp.route('/<user_id>/events')
 def read_user_events(user_id):
-    event_invites = bookyrself.users.child(user_id).child('events').get()
+    event_invites = bookyrself.firebase.database().child('users').child(user_id).child('events').get().each()
     events_list = []
-    for event_id in event_invites:
-        event = bookyrself.events.child(event_id).get()
-        events_list.append(event)
 
+    if event_invites is not None:
+
+        for event_id in event_invites:
+            event = bookyrself.firebase.database().child('events').child(event_id.key()).get().val()
+            events_list.append(event)
+
+    print(events_list)
     return flask.jsonify(events_list)

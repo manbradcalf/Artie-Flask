@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>{{ user['username'] }}</title>
-</head>
-<body>
-<h1>Username: {{ user['username'] }}</h1>
-<h2>Tags: {{ user['tags'] }}</h2>
-<h3>Locale: {{ user['citystate'] }}</h3>
-<img src="https://firebasestorage.googleapis.com/v0/b/bookyrself-staging.appspot.com/o/images%2Fusers%{{ user_id }}?alt=media&token=141089a8-773e-41d3-afa4-c753a6f280c3">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-</body>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Users!</title>
+</head>
+<div class="container-fluid" style="max-width: 826px">
+    <h1>Artie.live!</h1>
+    <p>Browse friends looking for gigs, events, parties, shows, etc.</p>
+    <div class="row">
+        {% for user in template_users %}
+            <div class="card vertical" style="max-width: 200px; max-height: max-content">
+                <object data="{{ img_storage.child('images/users/'+user.key()).get_url(None) }}" type="image/png" style="max-height: inherit; max-width: inherit"  class="card-image">
+                <img src="https://via.placeholder.com/200x100">
+                </object>
+                <h4 style="padding: 8px"><a href={{ 'http://127.0.0.1:5000/users/'+user.key() }}>{{ user.val()['username'] }}</a></h4>
+                <p style="padding: 8px;max-width: 200px; max-height: 200px">{{ user.val()['bio'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 </html>

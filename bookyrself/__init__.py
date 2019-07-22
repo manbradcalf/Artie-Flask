@@ -1,22 +1,19 @@
-import os
-
-import firebase_admin
-from firebase_admin import credentials, db, storage
 import flask
+import pyrebase
 
 from bookyrself import user, main
 
 app = flask.Flask(__name__)
 
-creds = credentials.Certificate(os.environ["FIREBASE_CREDS"])
-firebase_admin.initialize_app(creds, {
-    'databaseURL': 'https://bookyrself-staging.firebaseio.com/'
-})
+config = {
+    "apiKey": "AIzaSyCTseIzPaKSJnBb_R8nws49Rmv1HzRNejE",
+    "authDomain": "bookyrself-staging.firebaseapp.com",
+    "databaseURL": "https://bookyrself-staging.firebaseio.com",
+    "storageBucket": "bookyrself-staging.appspot.com",
+    "serviceAccount": "/Users/benmedcalf/Downloads/bookyrself-staging-firebase-adminsdk-leedp-172ad3a755.json"
+}
 
-
-events = db.reference('events')
-users = db.reference('users')
-images = storage
+firebase = pyrebase.initialize_app(config)
 
 app.register_blueprint(user.bp)
 app.register_blueprint(main.bp)
