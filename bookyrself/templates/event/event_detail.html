@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+    <h1>{{ event['eventname'] }}</h1>
+
+    <div class="container-fluid">
+        <div class="row font-italic">
+            {% for tag in event['tags'] %}
+                {{ tag+',' }}
+            {% endfor %}
+        </div>
+    </div>
+    <h3>{{ event['citystate'] }}</h3>
+    <img src={{ event_img_url }} height="auto" width="250" alt="event image">
+    <p class="font-italic">{{ event['bio'] }}</p>
+    </div>
+    </body>
+{% endblock %}

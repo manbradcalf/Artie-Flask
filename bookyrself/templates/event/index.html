@@ -3,15 +3,15 @@
 <body>
 {% block content %}
 <div class="masonry">
-    {% for user in template_users %}
+    {% for event in template_events %}
         <div class="item">
-            <object data="{{ img_storage.child('images/users/'+user.key()).get_url(None) }}"
+            <object data="{{ img_storage.child('images/events/'+event.key()).get_url(None) }}"
                     type="image/png"
                     style="max-width: 200px; max-height: 200px">
                 <img src="https://via.placeholder.com/200x100">
             </object>
-            <h4><a href={{ 'http://127.0.0.1:5000/users/'+user.key() }}>{{ user.val()['username'] }}</a></h4>
-            <p>{{ user.val()['bio'] }}</p>
+            <h4><a href={{ 'http://127.0.0.1:5000/events/'+event.key() }}>{{ event.val()['eventname'] }}</a></h4>
+            <p>{{ event.val()['bio'] }}</p>
         </div>
     {% endfor %}
 </div>

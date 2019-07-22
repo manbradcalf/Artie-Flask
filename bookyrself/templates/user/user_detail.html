@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <body>
+    <h1>{{ user['username'] }}</h1>
+
+    <div class="container-fluid">
+        <div class="row font-italic">
+            {% for tag in user['tags'] %}
+                {{ tag+',' }}
+            {% endfor %}
+        </div>
+    </div>
+    <h3>{{ user['citystate'] }}</h3>
+    <img src={{ user_img_url }} height="auto" width="250" alt="user image">
+    <p class="font-italic">{{ user['bio'] }}</p>
+    </body>
+{% endblock %}

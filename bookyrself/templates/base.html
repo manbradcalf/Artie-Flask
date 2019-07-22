@@ -1,0 +1,21 @@
+<!doctype html>
+<title>Artie</title>
+<section class="content">
+    {% block header %}
+        <link rel="stylesheet" href="{{ url_for('static',filename="style.css") }}">
+        <title>Users!</title>
+        <div class="hero">
+            <h1>Artie.live!</h1>
+            <p style="text-align: center">Browse friends looking for gigs, events, parties, shows, etc.</p>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('events.get_events') }}">Events</a></li>
+                <li><a href="{{ url_for('users.get_users') }}">Users</a></li>
+            </ul>
+        </div>
+    {% endblock %}
+{%  block content %}
+    <p>WHAT IS UP</p>
+    <h4>THIS IS THE HOME PAGE</h4>
+{%  endblock content %}
+</section>

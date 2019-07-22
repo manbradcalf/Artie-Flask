@@ -5,10 +5,10 @@ import bookyrself
 bp = Blueprint("users", __name__, url_prefix="/users")
 
 
-@bp.route('/')
-def read_all_users():
-    users = bookyrself.firebase.database().child('users').get().each()
-    return render_template('user/index.html', template_users=users,
+@bp.route("/")
+def get_users():
+    template_users = bookyrself.firebase.database().child('users').get().each()
+    return render_template('user/index.html', template_users=template_users,
                            img_storage=bookyrself.firebase.storage())
 
 
@@ -16,7 +16,7 @@ def read_all_users():
 def read_user(user_id):
     user = bookyrself.firebase.database().child('users').child(user_id).get().val()
     url = bookyrself.firebase.storage().child(f'images/users/{user_id}').get_url(None)
-    return render_template('user/user.html', user=user, user_img_url=url)
+    return render_template('user/user_detail.html', user=user, user_img_url=url)
 
 
 @bp.route('/<user_id>/events')
