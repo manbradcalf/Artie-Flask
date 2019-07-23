@@ -12,7 +12,7 @@ config = {
     "authDomain": "bookyrself-staging.firebaseapp.com",
     "databaseURL": "https://bookyrself-staging.firebaseio.com",
     "storageBucket": "bookyrself-staging.appspot.com",
-    "serviceAccount": os.environ['GOOGLE_CREDENTIALS']
+    "serviceAccount": "google-credentials.json"
 }
 
 firebase = pyrebase.initialize_app(config)
