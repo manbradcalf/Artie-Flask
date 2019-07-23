@@ -1,3 +1,5 @@
+import os
+
 import flask
 import pyrebase
 
@@ -6,11 +8,11 @@ from bookyrself import user, main, event
 app = flask.Flask(__name__)
 
 config = {
-    "apiKey": "AIzaSyCTseIzPaKSJnBb_R8nws49Rmv1HzRNejE",
+    "apiKey": os.environ['FIREBASE_API_KEY'],
     "authDomain": "bookyrself-staging.firebaseapp.com",
     "databaseURL": "https://bookyrself-staging.firebaseio.com",
     "storageBucket": "bookyrself-staging.appspot.com",
-    "serviceAccount": "/Users/benmedcalf/Downloads/bookyrself-staging-firebase-adminsdk-leedp-172ad3a755.json"
+    "serviceAccount": "google-credentials.json"
 }
 
 firebase = pyrebase.initialize_app(config)
