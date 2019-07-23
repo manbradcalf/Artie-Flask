@@ -12,6 +12,7 @@
             </object>
             <h4><a href={{ 'http://127.0.0.1:5000/users/'+user.key() }}>{{ user.val()['username'] }}</a></h4>
             <p>{{ user.val()['bio'] }}</p>
+            <p><i>{{ user.val()['citystate'] }}</i></p>
         </div>
     {% endfor %}
 </div>
