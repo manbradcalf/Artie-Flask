@@ -1,4 +1,3 @@
-import flask
 from flask import Blueprint, render_template
 import bookyrself
 
