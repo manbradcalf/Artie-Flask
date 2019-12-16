@@ -11,11 +11,13 @@
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('events.get_events') }}">Events</a></li>
                 <li><a href="{{ url_for('users.get_users') }}">Users</a></li>
+                <li><a href="{{ url_for('search.get_search') }}">Search</a></li>
+                <li><a href="{{ url_for('about.get_about') }}">About</a></li>
             </ul>
         </div>
     {% endblock %}
-{%  block content %}
-    <p>WHAT IS UP</p>
-    <h4>THIS IS THE HOME PAGE</h4>
-{%  endblock content %}
+    {% block content %}
+        <p>Welcome to Artie!</p>
+        <h4>Use the tabs to browse our Users and Events.</h4>
+    {% endblock content %}
 </section>
