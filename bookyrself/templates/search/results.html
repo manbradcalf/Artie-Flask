@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="hero">Results</h1>
+    <form action="{{ url_for('search.execute_search') }}">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"></button>
+    </form>
+    {% for item in results %}
+        <div class="item" style="width: 240px">
+            <object data="{{ img_storage.child('images/users/'+item['_id']).get_url(None) }}"
+                    type="image/png"
+                    style="max-width: 200px; max-height: 200px">
+                <img src="https://via.placeholder.com/200x100">
+            </object>
+            <p>Username: {{ item['_source'].username }}</p>
+            <p>Bio: {{ item['_source'].bio }}</p>
+            <p>City: {{ item['_source'].citystate }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
